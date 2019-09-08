@@ -1,0 +1,84 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+a {
+	text-decoration: none;
+}
+li {
+	text-decoration: none;
+	list-style: none;
+}
+body {
+	font-family: 'Raleway', sans-serif;
+}
+.logo {
+	background: #BFBFBF;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+.graficlogo {
+	padding: 5px;
+	max-width: 100%;
+	box-sizing: border-box;
+}
+
+nav {
+	margin: auto;
+	width: 800px;
+	height: 100px;
+}
+.topnav {
+	background-color: #FFF;
+	font-size: 14px;
+	margin-top: 40px;
+}
+.topnav a{
+	color: #000;
+	text-align: center;
+	padding: 14px 16px;
+	font-size: 15px;
+}
+.topnav a:hover{
+	border-bottom: 2px solid #000;
+	text-decoration: none;
+	color: black;
+}
+.topnav .icon{
+	display: none;
+}
+
+.mv-100{
+	max-width: 100%; /* чтобы картинка не вылазила за пределы 
+	родительского контейнера при уменьшении окна */
+}
+
+@media screen and (max-width: 768px){
+	.topnav a:not(:first-child) {
+		display: none;
+	}
+	.topnav a.icon{
+		float: right;
+		margin-top: -17px;
+		display: block;
+		color: black; 
+	}
+	nav{
+		width: 100%;
+		height: 50px;
+	}
+	.topnav.responsive{
+		position: relative;
+	}
+	.topnav.responsive a.icon{
+		position: absolute;
+		right: 0;
+		top: 0;
+	}
+	.topnav.responsive a {
+		float: none; /*чтобы меню в одну колонку */
+		display: block;
+		text-align: center;
+	}
+}
