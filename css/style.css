@@ -13,10 +13,10 @@ body {
 	font-family: 'Raleway', sans-serif;
 }
 .logo {
-	background: #808080;
+	background: #011921;
 	width: 100%;
 	display: flex;
-	justify-content: center;
+	justify-content: left;
 }
 .graficlogo {
 	padding: 5px;
@@ -79,7 +79,7 @@ nav {
 footer{
 	width: 100%;
 	height: auto;
-	background: #808080;
+	background: #FFF;
 	margin: 0 auto;
 	text-align: center;
 	padding-top: 25px;
@@ -216,6 +216,95 @@ footer nav a:hover{
 	
 }
 
+.form{
+	width: 50%;
+	margin: 50px auto;
+}
+
+.feedback-input{
+	color: #000;
+	font-weight: 300;
+	font-size: 14px;
+	line-height: 22px;
+	background-color: #fff;
+	padding: 13px;
+	margin-bottom: 10px;
+	width: 100%;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	border: 0px solid transparent;
+	border-bottom: 1px solid #000;
+}
+
+textarea{
+	width: 100%;
+	height: 150%;
+	resize: vertical;
+}
+
+.button-submit{
+	float: left;
+	width: 100%;
+	border: 0px solid transparent;
+	cursor: pointer;
+	background-color: #000;
+	color: white;
+	font-size: 18px;
+	padding-top: 22px;
+	padding-bottom: 22px;
+	transition: all 0.3s;
+	margin-top: -4px;
+	font-weight: 300;
+}
+
+.button-submit:hover{
+	background-color: #fff;
+	color: #000;
+	border: 1px solid #000;
+}
+
+.easy{
+	width: 0;
+	height: 74px;
+	background-color: #fbfbfb;
+	transition: 0.3s easy;
+}
+
+.about__container{
+	width: 80%;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.about__container img{
+	max-width: 100%;
+}
+
+.about__container p{
+	margin-top: 50px;
+}
+
+.about__container h1{
+	margin-top: 50px;
+}
+
+.services{
+		width: 80%;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.services img{
+	max-width: 100%;
+}
+
+.services__container{
+	margin-top: 50px;
+	display: grid;
+	grid-template-columns: auto auto; /*1fr-первая колонка будет узкой*/
+	grid-gap: 50px 50px;
+}
 
 @media screen and (max-width: 765px){
 	.topnav a:not(:first-child) {
@@ -280,4 +369,7 @@ footer nav a:hover{
 	.blog-container{
     	width: 20rem;
     }
+    .services__container{
+		grid-template-columns: auto;
+	}
 }
