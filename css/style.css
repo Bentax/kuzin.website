@@ -162,6 +162,13 @@ footer nav a:hover{
 	text-align: justify;
 }
 
+.digital {
+	font-weight: bold;
+	color: green; 
+	background-color: grey; 
+	padding: 2px;
+}
+
 .blog-tags ul{
 	display: flex;
 	flex-direction: row;
@@ -301,6 +308,7 @@ textarea{
 }
 
 .services img{
+	padding-top: 50px;
 	max-width: 100%;
 }
 
@@ -350,7 +358,7 @@ textarea{
     	width: 28rem;
     }
 }
-@media screen and (max-width: 500px){
+@media screen and (max-width: 600px){
 
 	.advantages{
 		flex-direction: column;

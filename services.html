@@ -29,56 +29,128 @@
 
 <main>
 	<div class="services">
-		<img src="img/services.jpg" alt="">
+		<img src="img/services.png" alt="">
 		<div class="services__container">
-		
-			<div class="services__container__block">
-				<h3>Что могу делать:</h3>
-				<p>kjfjhgfkjhg lnblkgvjhgvk ;kgbgfvjhgfvjhgb kjhgfvcfdchv hn;kgvfg lkfhglbnkjhgvj kgfctesxcuynkjfjh gfkjhglnblkgvjhgvk ;kgbgfvjhgfvjhgb kjhgfvcfdchvhn;kgvfg lkfhglbnkjhgvj kgfctesxcuyn kjfjhgfkjhg lnblkgvjhgvk ;kgbgfvjhgfvjhgb kjhgfvcfdchvhn;kgvfg lkfhglbnkjhgvj kgfctesxcuyn</p>
-			</div>
-						<div class="services__container__block">
-				<h3>Что могу делать:</h3>
-				<p>kjfjhgfkjhg lnblkgvjhgvk ;kgbgfvjhgfvjhgb kjhgfvcfdchv hn;kgvfg lkfhglbnkjhgvj kgfctesxcuynkjfjh gfkjhglnblkgvjhgvk ;kgbgfvjhgfvjhgb kjhgfvcfdchvhn;kgvfg lkfhglbnkjhgvj kgfctesxcuyn kjfjhgfkjhg lnblkgvjhgvk ;kgbgfvjhgfvjhgb kjhgfvcfdchvhn;kgvfg lkfhglbnkjhgvj kgfctesxcuyn</p>
-			</div>
-						<div class="services__container__block">
-				<h3>Что могу делать:</h3>
-				<p>kjfjhgfkjhg lnblkgvjhgvk ;kgbgfvjhgfvjhgb kjhgfvcfdchv hn;kgvfg lkfhglbnkjhgvj kgfctesxcuynkjfjh gfkjhglnblkgvjhgvk ;kgbgfvjhgfvjhgb kjhgfvcfdchvhn;kgvfg lkfhglbnkjhgvj kgfctesxcuyn kjfjhgfkjhg lnblkgvjhgvk ;kgbgfvjhgfvjhgb kjhgfvcfdchvhn;kgvfg lkfhglbnkjhgvj kgfctesxcuyn</p>
-			</div>
-						<div class="services__container__block">
-				<h3>Что могу делать:</h3>
-				<p>kjfjhgfkjhg lnblkgvjhgvk ;kgbgfvjhgfvjhgb kjhgfvcfdchv hn;kgvfg lkfhglbnkjhgvj kgfctesxcuynkjfjh gfkjhglnblkgvjhgvk ;kgbgfvjhgfvjhgb kjhgfvcfdchvhn;kgvfg lkfhglbnkjhgvj kgfctesxcuyn kjfjhgfkjhg lnblkgvjhgvk ;kgbgfvjhgfvjhgb kjhgfvcfdchvhn;kgvfg lkfhglbnkjhgvj kgfctesxcuyn</p>
-			</div>
+		<div class="blog-text">
+		<h3>Как развернуть на удалённом сервере Ubuntu LAMP</h3>
+		<p>Это простой туториал для себя. Частенько приходится разворачивать новые проекты на сервере. Как-то раз пришлось за одну ночь переносить проект с OpenServer на удалённый сервер. Это оказалось не так-то просто. Поэтому я собрал здесь всё что может помочь в этом не очень простом деле. Это делается ещё и с прицелом на будущее, ведь проект вместе с готовым окружением позволяет работать с ним далее.</p>
+		<p>Итак, начнём! Первое - вы арендовали VPS или VDS. Теперь можете установить на него Ubuntu (кстати, версия не ниже 18.04) вместе с LAMP, многие хостинги позволяют это делать по десять раз на дню. Но именно здесь, в начальных установках по умолчанию и зарыта собака. Именно после установки LAMP под root superuser начинаются вопросы, почему среда конфликтует с php, или php конфликтует с окружением. Поэтому устанавливает LAMP после установки Ubuntu и после создания на сервере не ROOT - пользователя так:</p>
+		<h5>1. Установка Apache2 и настройка UFW</h5>
+		<p>В командной строке набираем:</p>
+		<p class="digital">$ sudo apt update</p>
+		<p class="digital">$ sudo apt install apache2</p>
+		<p class="digital">$ sudo ufw app list</p>
+		<p>Получаем вывод:</p>
+		<p style="color: red">Available applications: Apache Apache Full Apache Secure OpenSSH</p>
+		<p>Проверим настройку профиля Apache Full, она должна разрешать трафик для портов 80 443:</p>
+		<p class="digital">$ sudo ufw app info "Apache Full"</p>
+		<p>Получаем вывод:</p>
+		<p style="color: red">Profile: Apache Full  Title: Web Server (HTTP,HTTPS) Description: Apache v2 is the next generation of the omnipresent Apache web server. Ports: 80,443/tcp</p>
+		<p>Разрешим входящий трафик HTTP HTTPS для нашего профиля:</p>
+		<p class="digital">$ sudo ufw allow in "Apache Full"</p>
+		<p>После этого ваш сайт будет виден при наборе его URL или IP, причём вы увидите Default page Apache2 Ubuntu</p>
+		<h5>2. Установка MySQL</h5>
+		<p>Набираем в командной строке:</p>
+		<p class="digital">$ sudo apt install mysql-server</p>
+		<p>После завершения установки настроим окружение MySQL безопасным образом:</p>
+		<p class="digital">$ sudo mysql_secure_installation</p>
+		<p>Далее на все вопросы отвечайте Y, но читайте при этом. Установите пароль. По умолчанию ваш root пользователь имеет аутентификацию auth_socket. Можно изменить её на mysql_native_password. Для этого войдём в mysql:</p>
+		<p class="digital">$ sudo mysql</p>
+		<p>Далее, пишем последовательно такие команды:</p>
+		<p class="digital">mysql>ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';</p>
+		<p class="digital">mysql>FLUSH PRIVILEGES;</p>
+		<p class="digital">mysql>exit</p>
+		<p>Теперь наша система управления базами данных установлена и мы можем приступить к установке PHP:</p>
+		<h5>3. Установка PHP</h5>
+		<p>Следующая команда установит PHP на наш удалённый сервер без каких-либо проблем:</p>
+		<p class="digital">$ sudo apt install php libapache2-mod-php php-mysql</p>
+		<p>Настроим Apache так чтобы он искал в первую очередь файл index.php а не index.html, для этого введём команду:</p>
+		<p class="digital">$ sudo nano /etc/apache2/mods-enabled/dir.conf</p>
+		<p>В открывшемся файле передвинем на первое место index.php затем Ctrl+X затем Y и Enter. Далее перезапускаем Apache для применения изменений:</p>
+		<p class="digital">$ sudo systemctl restart apache2</p>
+		<h5>4. Тестирование PHP на удалённом веб-сервере</h5>
+		<p>Чтобы проверить, что наша система настроена правильно, создаём простой PHP файл info.php. Чтобы Apache нашел и обработал файл корректно, он должен быть сохранен в директории web root, данная директория находится по адресу /var/www/html/. Мы можем создать там файл следующей командой:</p>
+		<p class="digital">$ sudo systemctl restart apache2</p>
+		<p>В этом файле пишем phpinfo(); с соответствующими тегами. Теперь, если ввести этот SCRIPT_NAME в составе URL, мы увидим информацию о вашем сервере, примерно как на картинке-заставке этой статьи. Здесь полезная информация для отладки, но об этом в другой статье.</p>
+		<p>Поздравляю, LAMP вы установили!</p>
+		<p class="digital"></p>
 
-	</div>
+
+		</div>
+		<div class="blog-text">
+				<h3>Создание non-root пользователя на сервере Ubuntu</h3>
+				<p>Пользователь root является superuser - администратором в среде Linux и имеет широкие права. Ввиду таких его прав учетной записи root не рекомендуется использовать ее на постоянно, т.к. некоторые его права дают возможность вносить непоправимые изменения, в том числе случайно.</p>
+				<h5>1. Вход в систему под именем root</h5>
+				<p>Если вы еще не подключены к серверу, войдите в систему под именем root, используя следующую команду (замените выделенную часть команды на публичный IP-адрес вашего сервера):</p>
+				<p class="digital">$ ssh root@your_server_ip</p>
+				<p>Подтвердите предупреждение о подлинности хоста, если оно появится. Если вы используете аутентификацию по паролю, укажите пароль root для входа в систему. Если вы используете SSH-ключ, защищенный кодовой фразой, то при первом использовании ключа в каждом сеансе вам может быть предложено ввести кодовую фразу. Если вы впервые входите на сервер с помощью пароля, вам также может быть предложено изменить пароль root.</p>
+				<h5>2. Создание нового пользователя</h5>
+				<p>В этом примере показан процесс создания нового пользователя под именем sasha:</p>
+				<p class="digital"># adduser sasha</p>
+				<p>Вам будут заданы несколько вопросов, начиная с установки пароля. При желании, укажите дополнительную информацию, если это не требуется, нажмите ENTER если хотите пропустить.</p>
+				<h5>3. Предоставление прав администратора</h5>
+				<p>Чтобы избежать необходимости выхода из учетной записи обычного пользователя и входа в систему под именем root, мы можем настроить так называемые права “superuser” или root для нашей обычной учетной записи. Это позволит обычному пользователю запускать команды с правами администратора путем добавления слова sudo перед каждой командой. Чтобы назначить данные права нашему новому пользователю, необходимо добавить нового пользователя в группу sudo. По умолчанию на сервере Ubuntu 18.04 пользователям группы sudo разрешается использовать команду sudo. Запустите данную команду под именем root, чтобы добавить нового пользователя в группу sudo (замените выделенное слово на имя нового пользователя):</p>
+				<p class="digital"># usermod -aG sudo sasha</p>
+				<p>Теперь после входа в систему в качестве обычного пользователя вы можете вводить sudo перед командами для выполнения действий с правами superuser.</p>
+				<h5>4. Установка брандмауэра</h5>
+				<p>Различные приложения могут регистрировать свои профили при установке UFW. Данные профили позволяют UFW управлять приложениями по имени. Сервис OpenSSH, позволяющий подключиться к нашему серверу, имеет зарегистрированный профиль в UFW. Вы можете проверить это, набрав:</p>
+				<p class="digital"># ufw app list</p>
+				<p>Необходимо убедиться, что брандмауэр разрешает SSH-соединения, чтобы можно было войти в систему в следующий раз. Мы можем разрешить эти соединения путем ввода:</p>
+				<p class="digital"># ufw allow OpenSSH</p>
+				<p>Затем мы можем активировать брандмауэр путем ввода:</p>
+				<p class="digital"># ufw enable</p>
+				<p>Введите Y и ENTER, чтобы продолжить. Можно увидеть, что SSH-соединения разрешены, путем ввода:</p>
+				<p class="digital"># ufw status</p>
+				<h5>5. Предоставление внешнего доступа для обычного пользователя</h5>
+				<p>После создания обычного пользователя для повседневной работы необходимо убедиться, что мы можем использовать SSH непосредственно в учетной записи. Процесс настройки SSH-доступа для нового пользователя зависит от того, использует ли учетная запись root сервера пароль или SSH-ключи для аутентификации. Если учетная запись Root использует аутентификацию по паролю Если вы вошли в учетную запись root, используя пароль, значит, для SSH активирована аутентификация по паролю. Вы можете использовать SSH для своей новой учетной записи пользователя, открыв новый сеанс и используя SSH с новым именем пользователя:</p>
+				<p class="digital">$ ssh sasha@your_server_ip</p>
+				<p>После ввода пароля обычного пользователя вы войдете в систему. Помните, что при необходимости запуска команды с административными правами, введите sudo перед командой:</p>
+				<p class="digital">$ sudo command_to_run</p>
+				<p>Поздравляю, теперь у вас есть non-root пользователь и вы можете устанавливать LAMP на свой сервер!</p>
+				<p class="digital"></p>
+			</div>
+		</div>
 	</div>
 	
+	<div class="services">
+		<img src="img/Laravel.jpeg" alt="">
+		<div class="services__container">
+		
+			<div class="blog-text">
+				<h3>Установка Laravel на удалённый сервер</h3>
+				<p></p>
+			</div>
+						<div class="blog-text">
+				<h3>Что могу делать:</h3>
+				<p>kjfjhgfkjhg lnblkgvjhgvk ;kgbgfvjhgfvjhgb kjhgfvcfdchv hn;kgvfg lkfhglbnkjhgvj kgfctesxcuynkjfjh gfkjhglnblkgvjhgvk ;kgbgfvjhgfvjhgb kjhgfvcfdchvhn;kgvfg lkfhglbnkjhgvj kgfctesxcuyn kjfjhgfkjhg lnblkgvjhgvk ;kgbgfvjhgfvjhgb kjhgfvcfdchvhn;kgvfg lkfhglbnkjhgvj kgfctesxcuyn</p>
+			</div>
+						<!-- <div class="services__container__block">
+				<h3>Что могу делать:</h3>
+				<p>kjfjhgfkjhg lnblkgvjhgvk ;kgbgfvjhgfvjhgb kjhgfvcfdchv hn;kgvfg lkfhglbnkjhgvj kgfctesxcuynkjfjh gfkjhglnblkgvjhgvk ;kgbgfvjhgfvjhgb kjhgfvcfdchvhn;kgvfg lkfhglbnkjhgvj kgfctesxcuyn kjfjhgfkjhg lnblkgvjhgvk ;kgbgfvjhgfvjhgb kjhgfvcfdchvhn;kgvfg lkfhglbnkjhgvj kgfctesxcuyn</p>
+			</div>
+						<div class="services__container__block">
+				<h3>Что могу делать:</h3>
+				<p>kjfjhgfkjhg lnblkgvjhgvk ;kgbgfvjhgfvjhgb kjhgfvcfdchv hn;kgvfg lkfhglbnkjhgvj kgfctesxcuynkjfjh gfkjhglnblkgvjhgvk ;kgbgfvjhgfvjhgb kjhgfvcfdchvhn;kgvfg lkfhglbnkjhgvj kgfctesxcuyn kjfjhgfkjhg lnblkgvjhgvk ;kgbgfvjhgfvjhgb kjhgfvcfdchvhn;kgvfg lkfhglbnkjhgvj kgfctesxcuyn</p>
+			</div> -->
+		</div>
+	</div>
 </main>
 
 <footer>
-	<nav>
+	<div>
 
-			<a href="index.html">HOME</a>
-			<a href="projects.html">PROJECTS</a>
-			<a href="blog.html">BLOG</a>
-			<a href="contact.html">CONTACT</a>
-			<a href="about.html">ABOUT</a>
-			<a href="services.html">SERVICES</a>
-			<a href="location.html">LOCATION</a>
-
-	</nav>
-	<div class="logo">
-		<a href="index.html"><img class="graficlogo" src="img/logo.png" alt=""></a>
+		<div class="social">
+		<a href="#"><img src="img/social_icons/github.png" alt=""></a>
+		<a href="#"><img src="img/social_icons/inst.png" alt=""></a>
+		<a href="#"><img src="img/social_icons/face.png" alt=""></a>
+		<a href="#"><img src="img/social_icons/location.png" alt=""></a>
+		<a href="#"><img src="img/social_icons/vk.png" alt=""></a>
+		<a href="#"><img src="img/social_icons/stack.png" alt=""></a>
+		<a href="mailto:bentaxrus@mail.ru"><img src="img/social_icons/mail.png" alt=""></a>
+		<a class="phone" href="tel:+79138208314"><img src="img/social_icons/phone.png" alt=""></a>
 	</div>
-	<div class="social">
-		<a href="#"><img src="img/social_icons/facebook.png" alt=""></a>
-		<a href="#"><img src="img/social_icons/linkedin.png" alt=""></a>
-		<a href="#"><img src="img/social_icons/busket.png" alt="3"></a>
-		<a href="#"><img src="img/social_icons/mail.png" alt="4"></a>
-		<a class="phone" href="tel:+79138208314">
-			<img src="img/social_icons/phone.png" alt="">
-		</a>
+		<p>AndreyKuzin&copy;</p>
 	</div>
-	<p>AndreyKuzin&copy;</p>
 </footer>
 
 <script src="js/script.js"></script>
