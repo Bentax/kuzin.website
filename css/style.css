@@ -319,6 +319,36 @@ textarea{
 	grid-gap: 50px 50px;
 }
 
+#form-container {
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #b9b9b9b8;
+	display: none;
+	justify-content: center;
+	align-items: center;
+}
+#recall-form {
+	padding: 15px;
+	width: 250px;
+	height: 350px;
+	background-color: white;
+}
+#recall-form > * {
+	display: block;
+	margin-bottom: 10px;
+}
+/*
+#recall-form button {
+	background-color: red;
+}
+*/
+.order-recall {
+
+}
+
 @media screen and (max-width: 765px){
 	.topnav a:not(:first-child) {
 		display: none;
