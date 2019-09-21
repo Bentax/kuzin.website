@@ -1,12 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Kuzin</title>
+	<title>Web Developer</title>
 	<link rel="stylesheet" href="css/style.css">
 	<link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<script src="js/jquery-3.4.1.js"></script>
+	<script src="js/main.js"></script>
+	<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon?">
 </head>
 <body>
+
+	<div class="form-container">
+		<form class="recall-form">
+			<label>Ваше имя:</label>
+			<input type="text" name="name" id="name" placeholder="Alex" autofocus required/>
+			<label>Телефон:</label>
+			<input type="phone" name="tel" id="tel" placeholder="+79138208314" autofocus required/>
+			<label>E-mail:</label>
+			<input type="email" name="email" id="email" placeholder="mail@example.ru" autofocus required/>
+			<label>Отвечу ASAP:</label>
+			<button class="btn btn-success">Отправить</button>
+
+		</form>
+	</div>
+	
 <header>
 	<div class="logo">
 		<a href="index.html"><img class="graficlogo" src="img/logo.png" alt="logo"></a>
@@ -33,25 +51,22 @@
 		<h1>Кузин Андрей - web разработчик и преподаватель PM</h1>
 		<p>Меня интересует всё, что связано с обучением, и даже с обучением обучению! Мы познаём мир непрерывно и постоянно. Любопытство - это показатель того, что мы ещё живы и живём в реальном мире, а не в выдуманном!</p>
 	</div>
+	<p class="digital"></p>
 </main>
 
 <footer>
-	
-	<div class="logo">
+	<div>
 		<div class="social">
-		<a href="#"><img src="img/social_icons/em.png" alt=""></a>
-		<a href="#"><img src="img/social_icons/inst.png" alt=""></a>
-		<a href="#"><img src="img/social_icons/face.png" alt="3"></a>
-		
-		<a class="phone" href="tel:+79138208314">
-		<img src="img/social_icons/phone.png" alt=""></a>
-		<p>AndreyKuzin&copy;</p>
+		<a href="https://github.com/Bentax"><img src="img/social_icons/github.png" alt=""></a>
+		<a href="https://www.instagram.com/kuzin.website/?hl=ru"><img src="img/social_icons/inst.png" alt=""></a>
+		<a href="https://www.facebook.com/bentaxrus"><img src="img/social_icons/face.png" alt=""></a>
+		<a href="location.html"><img src="img/social_icons/location.png" alt=""></a>
+		<a href="https://vk.com/rannila70"><img src="img/social_icons/vk.png" alt=""></a>
+		<a href="https://ru.stackoverflow.com/users/352178/andrey-kuzin"><img src="img/social_icons/stack.png" alt=""></a>
+		<a class="order-recall"><img src="img/social_icons/mail.png" alt=""></a>
+		<a class="phone" href="tel:+79138208314"><img src="img/social_icons/phone.png" alt=""></a>
 		</div>
 	</div>
-	
-	
 </footer>
-
-<script src="js/script.js"></script>
 </body>
 </html>
