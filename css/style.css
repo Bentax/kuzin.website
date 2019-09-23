@@ -70,15 +70,11 @@ nav {
 	justify-content: space-between;
 	text-align: center;
 	flex-wrap: wrap;
-
 }
 
 .advantages__item{
-	width: 30%;
-}
 
-.advantages img:hover{
-	background: blue;
+	width: 30%;
 }
 
 footer{
@@ -105,10 +101,10 @@ footer nav a:hover{
 	padding-bottom: 50px;
 }
 
-/*.social img:hover{
+.social img:hover{
 	background: blue;
 	border-radius: 50%;
-}*/
+}
 
 .gallery{
 	width: 80%;
@@ -160,7 +156,6 @@ footer nav a:hover{
 }
 .blog-text p{
 	color: #4d4d4d;
-	text-align: justify;
 }
 
 .blog-tags ul{
